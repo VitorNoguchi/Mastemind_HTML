@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for a in data %}
+    <article class="media content-section">
+        <div class="media-body">
+                <h5>Username</h5>
+                    <p>{{ a.Name }}</p>
+        </div>
+        <div class="media-body">
+                <h5>Status</h5>
+                    <p>{{ a.Count }} tentativa(s)</p>
+        </div>
+        <div class="media-body">
+                <h5>Last try</h5>
+                    <p>{{ a.past_attempt[-1] }}</p>
+        </div>
+        <div class="media-body">
+                <h5>Last Result</h5>
+                    <p>{{ a.Result }}</p>
+        </div>
+        {% if a.Result != 'GAME OVER' and a.Result != "VOCE VENCEU!" %}
+            <div class="media-body">
+                    <h5>Target</h5>
+                        <p> **** </p>
+            </div>
+        {% else %}
+            <div class="media-body">
+                    <h5>Target</h5>
+                        <p> {{ a.Target }} </p>
+            </div>
+        {% endif %}
+    </article>
+{% endfor %}
+{% endblock content%}
