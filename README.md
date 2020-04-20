@@ -4,7 +4,7 @@ This is the repository to play the Mastermind game. The game consists in a patte
 
 In its current form, the code is meant to be executed in Python 3, it's necessary to have the python libraries within the code and the MongoDB installed. 
 
-Don't have MongoDB? check https://docs.mongodb.com/manual/installation/ .
+*Don't have MongoDB?* check https://docs.mongodb.com/manual/installation/ .
 
 	List of libraries in use:
 		- flask
@@ -49,20 +49,23 @@ With flask, the script displays the templates for each page in your browser and 
 @app.route("/GameRecord") -  It is created with the GameRecord.html and layout.html. This page displays some infos about all the players and their game status by calling:
 	The record function from Functions.py
 
-Functions.py
+**Functions.py**
 In the mastermind class:
+
 	- 'Create_number' function returns a new four digit pattern. 
-	- 'Start' function gets the username and the password inputed by the player, calls the 		  		 'Create_number' function and save all the infos in the MongoDB database.
-	- 'Tentativa' receives the username, password and the new guess as parameters. Gets the info of the 		 player from the MongoDB, checks the result, update the database and returns the feedback.
+	- 'Start' function gets the username and the password inputed by the player, calls the
+	  'Create_number' function and save all the infos in the MongoDB database.
+	- 'Tentativa' receives the username, password and the new guess as parameters. Gets the info of 
+	  the player from the MongoDB, checks the result, update the database and returns the feedback.
 	- 'record' return all the infos from the database, it will be use in the GameRecord page.
 	- 'find' returns the info from a specific player, using the username and password.
 
-Forms.py
+**Forms.py**
 Consists in two classes:
 	RegistrationForms: Requires the username, password and confirmpassword from the player.
 	AttemptForms: Requires the username, password and the new guess from the player.
 
-MongoDB.py
+**MongoDB.py**
 In the DB class:
 	- 'start_conn' starts the connection with the database 
 	- 'insertion_mongo' inserts a new sample in the collection, both passed as arguments
