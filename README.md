@@ -50,8 +50,8 @@ With flask, the script displays the templates for each page in your browser and 
 	The record function from Functions.py
 
 **Functions.py**
-In the mastermind class:
 
+In the mastermind class:
 	- 'Create_number' function returns a new four digit pattern. 
 	- 'Start' function gets the username and the password inputed by the player, calls the
 	  'Create_number' function and save all the infos in the MongoDB database.
@@ -61,11 +61,13 @@ In the mastermind class:
 	- 'find' returns the info from a specific player, using the username and password.
 
 **Forms.py**
+
 Consists in two classes:
 	RegistrationForms: Requires the username, password and confirmpassword from the player.
 	AttemptForms: Requires the username, password and the new guess from the player.
 
 **MongoDB.py**
+
 In the DB class:
 	- 'start_conn' starts the connection with the database 
 	- 'insertion_mongo' inserts a new sample in the collection, both passed as arguments
