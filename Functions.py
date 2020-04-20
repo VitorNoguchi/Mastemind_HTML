@@ -75,6 +75,3 @@ class mastermind:
 
 if __name__ == '__main__':
     jogo = mastermind()
-    print(jogo.Create_Number())
-    print(jogo.Start())
-    print(jogo.tentativa(4125))
