@@ -17,7 +17,7 @@ Don't have MongoDB? check https://docs.mongodb.com/manual/installation/ .
 		- random
 		- threading
 
-Ready to play?
+# Ready to play?
 
 In order to start the game, clone all the files within this repo or downloand the current master and unzip it in the directory of your choice.
 
@@ -29,9 +29,9 @@ In my case, I'm using Ubuntu 18.04. For other OS, check the mongodb manual above
 
 Run the API.py file, it will return a url for the localhost where the game will be running. Click on it or copy to the browser of your choice and start playing. 
 
-Files:
+# Files:
 
-API.py
+**API.py
 
 With flask, the script displays the templates for each page in your browser and generate .log outputs.
 
