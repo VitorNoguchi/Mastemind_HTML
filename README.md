@@ -31,7 +31,7 @@ Run the API.py file, it will return a url for the localhost where the game will 
 
 # Files:
 
-**API.py
+**API.py**
 
 With flask, the script displays the templates for each page in your browser and generate .log outputs.
 
