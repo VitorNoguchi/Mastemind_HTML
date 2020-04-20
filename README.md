@@ -23,11 +23,12 @@ In order to start the game, clone all the files within this repo or downloand th
 
 Next, you need to start your mongo.
 
-sudo systemctl start mongod
+	sudo systemctl start mongod
 
 In my case, I'm using Ubuntu 18.04. For other OS, check the mongodb manual above.
 
 Run the API.py file, it will return a url for the localhost where the game will be running. Click on it or copy to the browser of your choice and start playing. 
+
 
 # Files:
 
@@ -49,6 +50,7 @@ With flask, the script displays the templates for each page in your browser and 
 @app.route("/GameRecord") -  It is created with the GameRecord.html and layout.html. This page displays some infos about all the players and their game status by calling:
 	The record function from Functions.py
 
+
 **Functions.py**
 
 In the mastermind class:
@@ -60,11 +62,13 @@ In the mastermind class:
 	- 'record' return all the infos from the database, it will be use in the GameRecord page.
 	- 'find' returns the info from a specific player, using the username and password.
 
+
 **Forms.py**
 
 Consists in two classes:
 	RegistrationForms: Requires the username, password and confirmpassword from the player.
 	AttemptForms: Requires the username, password and the new guess from the player.
+
 
 **MongoDB.py**
 
@@ -74,5 +78,6 @@ In the DB class:
 	- 'find_mongo' finds the user in the collection, according to the name and password passed as arguments
 	- 'findall' returns all the info from the database
 	- 'update' update the info from a specific user	
+
 
 The 'templates' folder contains all the .html code used in this application. 
