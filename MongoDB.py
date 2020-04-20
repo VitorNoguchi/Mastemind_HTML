@@ -33,7 +33,3 @@ class DB:
 if __name__ == "__main__":
     conn = DB()
     conn.start_conn('Name', 'Target')
-    teste = DB().find_mongo(conn.album, 'Vitor')
-    DB().remove(conn.album, 'Vitor')
-    print(teste)
-    print(conn.album.count_documents({}))
