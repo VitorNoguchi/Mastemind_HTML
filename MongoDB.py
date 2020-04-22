@@ -17,19 +17,24 @@ class DB:
     def insertion_mongo(self, collection, sample):
         collection.insert_one(sample)
 
-    def find_mongo(self, collection, name, password):
-        data = collection.find({'Name': name, 'Password': password})
+    def find_mongo(self, collection, name, email):
+        data = collection.find({'Name': name, 'Email': email})
         for a in data:
-            return a
+            if a['Result'] != 'GAME OVER' and a['Result'] != 'VOCE VENCEU!':
+                return a
 
     def findall(self, collection):
         data = collection.find()
         return data
 
-    def update(self, collection, name, password, target_number, attempt, result, attempt_list):
-        collection.update({'Name': name, 'Password': password}, {'Name': name, 'Password': password,
+    def update(self, collection, name, email, target_number, attempt, result, attempt_list):
+        data = DB().find_mongo(collection, name, email)
+        collection.update(data, {'Name': name, 'Email': email,
                         'Target': target_number,'Count': attempt,'Result': result, 'past_attempt': attempt_list})
 
 if __name__ == "__main__":
     conn = DB()
     conn.start_conn('Name', 'Target')
+    print(DB().find_mongo(conn.album, 'Vitor', 'vshojifn@gmail.com'))
+    #for a in DB().find_mongo(conn.album, 'Vitor', 'vshojifn@gmail.com'):
+    #    print(a)
