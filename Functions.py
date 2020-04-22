@@ -23,17 +23,17 @@ class mastermind:
         number = ''.join(map(str, digits))
         return number
 
-    def Start(self, usr, password):
+    def Start(self, usr, email):
         target_number = str(mastermind.Create_Number(self))
         attempt = int(0)
-        sample1 = {'Name': usr, 'Password': password, 'Target': target_number,
+        sample1 = {'Name': usr, 'Email': email, 'Target': target_number,
                     'Count': attempt, 'Result': '', 'past_attempt': []}
         db.DB().insertion_mongo(self.conn.album, sample1)
-        func_logger.info(f'NEWGAME,{usr},{password},{target_number}')
+        func_logger.info(f'NEWGAME,{usr},{email},{target_number}')
         return 'Bom Jogo'
 
-    def tentativa(self, attempt_number, usr, password):
-        data = mastermind.find(self, usr, password)
+    def tentativa(self, attempt_number, usr, email):
+        data = mastermind.find(self, usr, email)
         target_number = data['Target']
         attempt = data['Count']
         id = data['_id']
@@ -52,26 +52,33 @@ class mastermind:
             attempt += 1
             if result == '1111':
                 result = "VOCE VENCEU!"
-                func_logger.info(f'WIN,{usr},{password},{target_number},{list}')
+                func_logger.info(f'WIN,{usr},{email},{target_number},{list}')
             elif result != '1111' and attempt == 10:
                 result = 'GAME OVER'
-                func_logger.info(f'GAMEOVER,{usr},{password},{target_number},{list}')
+                func_logger.info(f'GAMEOVER,{id},{usr},{email},{target_number},{list}')
             else:
-                func_logger.info(f'PLAYING,{usr},{password},{target_number},{list}')
+                func_logger.info(f'PLAYING,{id},{usr},{email},{target_number},{list}')
+
+            updateprocess = threading.Thread(target=self.conn.update, args=[self.conn.album, usr, email,
+                                                                            target_number, attempt, result, list])
+            updateprocess.start()
         else:
-            pass
-        updateprocess = threading.Thread(target=self.conn.update, args=[self.conn.album, usr, password,
-                                        target_number, attempt, result, list])
-        updateprocess.start()
-        return result
+            result = 'FIM DE JOGO'
+            attempt = '10'
+
+        return [result, attempt]
 
     def record(self):
         data = self.conn.findall(self.conn.album)
         return data
 
-    def find(self, usr, password):
-        data = self.conn.find_mongo(self.conn.album, usr, password)
+    def find(self, usr, email):
+        data = self.conn.find_mongo(self.conn.album, usr, email)
         return data
+
 
 if __name__ == '__main__':
     jogo = mastermind()
+    print(jogo.Create_Number())
+    print(jogo.Start())
+    print(jogo.tentativa(4125))
