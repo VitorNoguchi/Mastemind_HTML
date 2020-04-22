@@ -8,10 +8,10 @@ In its current form, the code is meant to be executed in Python 3, it's necessar
 
 	List of libraries in use:
 		- flask
-		- Forms
-		- logging
-		- pymongo
 		- flask_wtf
+		- pymongo
+		- logging
+		- Forms
 		- wtforms and wtforms.validators
 		- MongoDB
 		- random
