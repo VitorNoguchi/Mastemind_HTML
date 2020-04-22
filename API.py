@@ -25,9 +25,13 @@ def home():
 def Start():
     form = RegistrationForms()
     if form.validate_on_submit():
-        game.Start(form.username.data, form.password.data)
-        flash(f'New Game for {form.username.data}!', 'success')
-        return redirect(url_for('Play'))
+        if game.find(form.username.data, form.email.data) == None:
+            game.Start(form.username.data, form.email.data)
+            flash(f'New Game for {form.username.data}!', 'success')
+            return redirect(url_for('Play'))
+        else:
+            flash(f'Jogo em aberto', 'danger')
+            return redirect(url_for('Start'))
     return render_template('Start.html', title='Create Account', form= form)
 
 @app.route("/Play", methods= ['GET', 'POST'])
@@ -35,18 +39,15 @@ def Play():
     try:
         form = AttemptForms()
         if form.validate_on_submit():
-            if game.find(form.username.data, form.password.data) != None:
-                try:
-                    int(form.number.data)
-                    resultado = game.tentativa(form.number.data, form.username.data, form.password.data)
-                    flash(f'Resultado: {resultado}', 'success')
-                    #return redirect(url_for('Play'))
-                except:
-                    flash(f'Digite um numero válido', 'danger')
-                    #return redirect(url_for('Play'))
+            if game.find(form.username.data, form.email.data) != None:
+                int(form.number.data)
+                resultado = game.tentativa(form.number.data, form.username.data, form.email.data)
+                flash(f'Resultado: {resultado[0]} ------ {resultado[1]}/10 Tentativas', 'success')
             else:
-                flash(f'Usuario e senha invalidos', 'danger')
+                flash(f'Dados invalidos', 'danger')
                 return redirect(url_for('Play'))
+        else:
+            pass
         return render_template('Play.html', title='Play', form= form)
     except:
         logger.exception('')
