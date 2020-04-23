@@ -12,7 +12,7 @@ In its current form, the code is meant to be executed in Python 3, it's necessar
 		- pymongo
 		- logging
 		- Forms
-		- wtforms and wtforms.validators
+		- wtforms 
 		- MongoDB
 		- random
 		- threading
@@ -43,7 +43,7 @@ With flask, the script displays the templates for each page in your browser and 
 	The Start function from mastermind class in Functions.py
 
 
-@app.route("/Play") - It is the Play page created with Play.html and layout.html. In it the player can input the username, password and the new guess and gets the feedback after each guess. And it calls:
+@app.route("/Play") - It is the Play page created with Play.html and layout.html. In it the player can input the username, email and the new guess and gets the feedback after each guess. And it calls:
 	The AttemptForm from Forms.py
 	The find and Tentativa methods from Functions.py
 
@@ -55,9 +55,9 @@ With flask, the script displays the templates for each page in your browser and 
 
 In the mastermind class:
 	- 'Create_number' function returns a new four digit pattern. 
-	- 'Start' function gets the username and the password inputed by the player, calls the
+	- 'Start' function gets the username and the email inputed by the player, calls the
 	  'Create_number' function and save all the infos in the MongoDB database.
-	- 'Tentativa' receives the username, password and the new guess as parameters. Gets the info of 
+	- 'Tentativa' receives the username, email and the new guess as parameters. Gets the info of 
 	  the player from the MongoDB, checks the result, update the database and returns the feedback.
 	- 'record' return all the infos from the database, it will be use in the GameRecord page.
 	- 'find' returns the info from a specific player, using the username and password.
@@ -66,8 +66,8 @@ In the mastermind class:
 **Forms.py**
 
 Consists in two classes:
-	RegistrationForms: Requires the username, password and confirmpassword from the player.
-	AttemptForms: Requires the username, password and the new guess from the player.
+	RegistrationForms: Requires the username, email from the player.
+	AttemptForms: Requires the username, email and the new guess from the player.
 
 
 **MongoDB.py**
@@ -75,7 +75,7 @@ Consists in two classes:
 In the DB class:
 	- 'start_conn' starts the connection with the database 
 	- 'insertion_mongo' inserts a new sample in the collection, both passed as arguments
-	- 'find_mongo' finds the user in the collection, according to the name and password passed as arguments
+	- 'find_mongo' finds the user in the collection, according to the name and email passed as arguments
 	- 'findall' returns all the info from the database
 	- 'update' update the info from a specific user	
 
