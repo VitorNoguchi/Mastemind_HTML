@@ -11,7 +11,6 @@ In its current form, the code is meant to be executed in Python 3, it's necessar
 		- flask_wtf
 		- pymongo
 		- logging
-		- Forms
 		- wtforms 
 		- MongoDB
 		- random
