@@ -12,7 +12,6 @@ In its current form, the code is meant to be executed in Python 3, it's necessar
 		- pymongo
 		- logging
 		- wtforms 
-		- MongoDB
 		- random
 		- threading
 
